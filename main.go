@@ -143,6 +143,7 @@ func validateBitmap(bitmap string) error {
 	return nil
 }
 
+// word list taken from https://gist.github.com/slushman/34e60d6bc479ac8fc698df8c226e4264
 var wordleList = [...]string{
 	"aback",
 	"abase",
