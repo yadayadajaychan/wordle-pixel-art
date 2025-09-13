@@ -57,9 +57,9 @@ func main() {
 		word, err := findWord(bitmap)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "%s: %s\n", os.Args[0], err)
+		} else {
+			fmt.Println(word)
 		}
-
-		fmt.Println(word)
 	}
 
 	if err := scanner.Err(); err != nil {
