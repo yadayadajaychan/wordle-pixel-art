@@ -80,21 +80,30 @@ func findWord(bitmap string) (string, error) {
 }
 
 func createBitmap(word string) string {
-	var output string
+	output := []byte{'0', '0', '0', '0', '0'}
+	count := make(map[rune]int)
+
+	for _, v := range correctWord {
+		count[v]++
+	}
 
 	for i, v := range word {
-		idx := strings.IndexRune(correctWord, v)
-
-		if idx == -1 {
-			output = output + "0"
-		} else if idx == i {
-			output = output + "g"
-		} else {
-			output = output + "y"
+		if word[i] == correctWord[i] {
+			output[i] = 'g'
+			count[v]--
 		}
 	}
 
-	return output
+	for i, v := range word {
+		if output[i] == '0' {
+			if count[v] > 0 {
+				output[i] = 'y'
+				count[v]--
+			}
+		}
+	}
+
+	return string(output)
 }
 
 func matchBitmap(bitmap1, bitmap2 string) bool {
